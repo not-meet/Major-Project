@@ -109,143 +109,141 @@ export default function PredictTrendsPage() {
       <Navbar />
       <div className="flex-1 pt-16 overflow-y-auto">
         <div className="flex">
-      {/* Left Side - Chart Visualization */}
-      <div className="w-1/2 bg-gray-50 p-8 flex flex-col">
-        <div className="flex-1 flex flex-col">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Current Data</h2>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setChartType('doughnut')}
-                className={`p-3 transition-all ${
-                  chartType === 'doughnut'
-                    ? 'bg-teal-500 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <PieChart className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setChartType('bar')}
-                className={`p-3 transition-all ${
-                  chartType === 'bar'
-                    ? 'bg-teal-500 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <BarChart3 className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Chart Display */}
-          <div className="flex-1 bg-white p-6 border border-gray-200 flex items-center justify-center">
-            <div className="w-full h-full max-h-96">
-              {chartType === 'doughnut' ? (
-                <Doughnut data={doughnutData} options={chartOptions} />
-              ) : (
-                <Bar data={barData} options={chartOptions} />
-              )}
-            </div>
-          </div>
-
-          {/* Quick Insights */}
-          <div className="mt-6 grid grid-cols-3 gap-4">
-            {insights.map((insight, index) => {
-              const Icon = insight.icon;
-              return (
-                <div key={index} className="bg-white p-4 border border-gray-200">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Icon className="w-4 h-4 text-teal-500" />
-                    <p className="text-xs text-gray-600">{insight.title}</p>
-                  </div>
-                  <p className="text-2xl font-bold text-gray-900">{insight.value}</p>
-                  <p className="text-xs text-gray-500 mt-1">{insight.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Right Side - Predictions */}
-      <div className="w-1/2 bg-linear-to-br from-teal-500 to-teal-600 p-8 text-white">
-        <div className="flex items-center gap-3 mb-2">
-          <Sparkles className="w-8 h-8" />
-          <h2 className="text-3xl font-semibold">Esilys Predictions</h2>
-        </div>
-        <p className="text-white/90 mb-8">Based on historical data and market trends</p>
-
-        {/* Prediction Cards */}
-        <div className="space-y-4 mb-8">
-          {predictions.map((pred, index) => {
-            const Icon = pred.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm p-6 border border-white/20 hover:bg-white/15 transition-all"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-white/20">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">{pred.month}</h3>
-                      <p className="text-sm text-white/80">Predicted Period</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-bold">{pred.growth}</p>
-                    <p className="text-sm text-white/80">Growth</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
-                  <div>
-                    <p className="text-sm text-white/70 mb-1">Revenue</p>
-                    <p className="text-lg font-semibold">{pred.revenue}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/70 mb-1">Units</p>
-                    <p className="text-lg font-semibold">{pred.units}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/70 mb-1">Confidence</p>
-                    <p className="text-lg font-semibold">{pred.confidence}</p>
-                  </div>
+          {/* Left Side - Chart Visualization */}
+          <div className="w-1/2 bg-gray-50 p-8 flex flex-col">
+            <div className="flex-1 flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold text-gray-900">Current Data</h2>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setChartType('doughnut')}
+                    className={`p-3 transition-all ${chartType === 'doughnut'
+                        ? 'bg-teal-500 text-white'
+                        : 'bg-white text-gray-600 hover:bg-gray-100'
+                      }`}
+                  >
+                    <PieChart className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setChartType('bar')}
+                    className={`p-3 transition-all ${chartType === 'bar'
+                        ? 'bg-teal-500 text-white'
+                        : 'bg-white text-gray-600 hover:bg-gray-100'
+                      }`}
+                  >
+                    <BarChart3 className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Key Recommendations */}
-        <div className="bg-white/10 backdrop-blur-sm p-6 border border-white/20">
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5" />
-            Key Recommendations
-          </h3>
-          <ul className="space-y-3">
-            <li className="flex items-start gap-3">
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
-              <p className="text-white/90">Increase inventory for Electronics category by 15% for May</p>
-            </li>
-            <li className="flex items-start gap-3">
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
-              <p className="text-white/90">Launch promotional campaign in June to maximize peak period</p>
-            </li>
-            <li className="flex items-start gap-3">
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
-              <p className="text-white/90">Focus on online channels - 68% growth predicted</p>
-            </li>
-            <li className="flex items-start gap-3">
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
-              <p className="text-white/90">Optimize supply chain for July peak demand</p>
-            </li>
-          </ul>
-        </div>
-      </div>
+              {/* Chart Display */}
+              <div className="flex-1 bg-white p-6 border border-gray-200 flex items-center justify-center">
+                <div className="w-full h-full max-h-96">
+                  {chartType === 'doughnut' ? (
+                    <Doughnut data={doughnutData} options={chartOptions} />
+                  ) : (
+                    <Bar data={barData} options={chartOptions} />
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Insights */}
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                {insights.map((insight, index) => {
+                  const Icon = insight.icon;
+                  return (
+                    <div key={index} className="bg-white p-4 border border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Icon className="w-4 h-4 text-teal-500" />
+                        <p className="text-xs text-gray-600">{insight.title}</p>
+                      </div>
+                      <p className="text-2xl font-bold text-gray-900">{insight.value}</p>
+                      <p className="text-xs text-gray-500 mt-1">{insight.description}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Predictions */}
+          <div className="w-1/2 bg-linear-to-br from-teal-500 to-teal-600 p-8 text-white">
+            <div className="flex items-center gap-3 mb-2">
+              <Sparkles className="w-8 h-8" />
+              <h2 className="text-3xl font-semibold">InsightsForge</h2>
+            </div>
+            <p className="text-white/90 mb-8">Based on historical data and market trends</p>
+
+            {/* Prediction Cards */}
+            <div className="space-y-4 mb-8">
+              {predictions.map((pred, index) => {
+                const Icon = pred.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm p-6 border border-white/20 hover:bg-white/15 transition-all"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-white/20">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold">{pred.month}</h3>
+                          <p className="text-sm text-white/80">Predicted Period</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold">{pred.growth}</p>
+                        <p className="text-sm text-white/80">Growth</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
+                      <div>
+                        <p className="text-sm text-white/70 mb-1">Revenue</p>
+                        <p className="text-lg font-semibold">{pred.revenue}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-white/70 mb-1">Units</p>
+                        <p className="text-lg font-semibold">{pred.units}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-white/70 mb-1">Confidence</p>
+                        <p className="text-lg font-semibold">{pred.confidence}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Key Recommendations */}
+            <div className="bg-white/10 backdrop-blur-sm p-6 border border-white/20">
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5" />
+                Key Recommendations
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
+                  <p className="text-white/90">Increase inventory for Electronics category by 15% for May</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
+                  <p className="text-white/90">Launch promotional campaign in June to maximize peak period</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
+                  <p className="text-white/90">Focus on online channels - 68% growth predicted</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2"></div>
+                  <p className="text-white/90">Optimize supply chain for July peak demand</p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

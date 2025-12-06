@@ -9,7 +9,7 @@ export default function Navbar() {
         {/* Left - Project Name */}
         <div className="flex items-center">
           <a href="/" className="text-2xl font-semibold text-gray-900">
-            esilyse
+            InsightForge
           </a>
         </div>
 
